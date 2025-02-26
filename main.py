@@ -25,17 +25,11 @@ mrjson = {
 }
 for i in os.listdir(f"{dir}//mods"):
 
-    hash_func = hashlib.new("sha1")
     with open(f"mods/{i}", 'rb') as file:
-        while chunk := file.read(8192):  # Read the file in chunks of 8192 bytes
-            hash_func.update(chunk)
-    sha1 = hash_func.hexdigest()
+        sha1 = hashlib.file_digest(f, "sha1")
 
-    hash_func = hashlib.new("sha512")
     with open(f"mods/{i}", 'rb') as file:
-        while chunk := file.read(8192):  # Read the file in chunks of 8192 bytes
-            hash_func.update(chunk)
-    sha512 = ""
+        sha512 = hashlib.file_digest(f, "sha512")
 
     filejson = {
         "path": f"mods/{i}",
