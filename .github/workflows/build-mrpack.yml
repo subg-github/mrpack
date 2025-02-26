@@ -34,3 +34,6 @@ jobs:
         asset_name: pack.mrpack
         tag: ${{ github.ref }}
         overwrite: true
+
+permissions:
+  contents: write
