@@ -3,7 +3,7 @@ import sys
 
 dir = os.getcwd()
 
-repo = f"{sys.argv[1]}/{sys.argv[2]}"
+repo = sys.argv[1]
 
 for i in os.listdir(f"{dir}//mods"):
     print(f"https://github.com/{repo}/mods/{i}")
