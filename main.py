@@ -14,7 +14,7 @@ for i in os.listdir(f"{dir}//mods"):
     print(f"https://raw.githubusercontent.com/{repo}/refs/heads/{branch}/mods/{i}")
 
 mrjson = {
-    "formatVersion": "1",
+    "formatVersion": 1,
     "game": "minecraft",
     "versionId": branch,
     "name": "Test mrpack",
