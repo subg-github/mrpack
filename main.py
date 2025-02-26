@@ -1,8 +1,13 @@
 import os
+import sys
 
 dir = os.getcwd()
 
-print(os.listdir(f"{dir}//mods"))
+repo = f"{sys.argv[1]}/{sys.argv[2]}"
+
+for i in os.listdir(f"{dir}//mods"):
+    print(f"https://github.com/{repo}/mods/{i}")
 
 with open('pack.mrpack', 'w') as file:
-    file.write(os.listdir(f"{dir}//mods"))
+    for i in os.listdir(f"{dir}//mods"):
+        file.write(f"https://github.com/{repo}/mods/{i}")
