@@ -28,6 +28,10 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Create mrpack file
       run: python main.py ${{ github.repository }} ${{ github.ref_name }}
+    - name: Delete existing tag if exists
+      run: |
+        git tag -d ${{ github.ref_name }} || true
+        git push origin :refs/tags/${{ github.ref_name }} || true
     - name: Create Release
       id: create_release
       uses: comnoco/create-release-action@main
