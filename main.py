@@ -56,5 +56,5 @@ output = json.dumps(mrjson, indent=4)
 with open('modrinth.index.json', 'w') as file:
     file.write(output)
 
-with ZipFile('pack.mrpack', 'w', zipfile.ZIP_DEFLATED) as pack:
+with ZipFile('pack.mrpack', 'w') as pack:
     pack.write("modrinth.index.json")
