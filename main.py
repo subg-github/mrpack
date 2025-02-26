@@ -13,7 +13,7 @@ for i in os.listdir(f"{dir}//mods"):
     print(f"https://raw.githubusercontent.com/{repo}/refs/heads/{branch}/mods/{i}")
 
 with open('modrinth.index.json', 'w') as file:
-    json = {
+    mrjson = {
         "formatVersion": "1",
         "game": "minecraft",
         "versionId": branch,
@@ -50,9 +50,9 @@ with open('modrinth.index.json', 'w') as file:
             "fileSize": os.path.getsize(f"{dir}//mods//{i}")
         }
 
-        json["files"].append(filejson)
+        mrjson["files"].append(filejson)
 
-    output = json.dumps(dictionary, indent=4)
+    output = json.dumps(mrjson, indent=4)
     file.write(output)
 
 with ZipFile('pack.mrpack', 'w', zipfile.ZIP_DEFLATED) as pack:
