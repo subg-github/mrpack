@@ -28,7 +28,7 @@ for i in os.listdir(f"{dir}//mods"):
 
     filebytes = Path(f"mods/{i}").read_bytes()
     sha1 = hashlib.sha1(filebytes)
-    sha1 = hashlib.sha512(filebytes)
+    sha512 = hashlib.sha512(filebytes)
 
     filejson = {
         "path": f"mods/{i}",
