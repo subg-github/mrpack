@@ -33,8 +33,8 @@ for i in os.listdir(f"{dir}//mods"):
     filejson = {
         "path": f"mods/{i}",
         "hashes": {
-            "sha1": sha1,
-            "sha512": sha512
+            "sha1": f"{sha1}",
+            "sha512": f"{sha512}"
         },
         "downloads": [
             f"https://raw.githubusercontent.com/{repo}/refs/heads/{branch}/mods/{i}"
