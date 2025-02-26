@@ -27,14 +27,14 @@ mrjson = {
 for i in os.listdir(f"{dir}//mods"):
 
     filebytes = Path(f"mods/{i}").read_bytes()
-    sha1 = hashlib.sha1(filebytes)
-    sha512 = hashlib.sha512(filebytes)
+    sha1 = str(hashlib.sha1(filebytes))
+    sha512 = str(hashlib.sha512(filebytes))
 
     filejson = {
         "path": f"mods/{i}",
         "hashes": {
-            "sha1": f"{sha1}",
-            "sha512": f"{sha512}"
+            "sha1": sha1,
+            "sha512": sha512
         },
         "downloads": [
             f"https://raw.githubusercontent.com/{repo}/refs/heads/{branch}/mods/{i}"
