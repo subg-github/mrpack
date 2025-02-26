@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import hashlib
+from pathlib import Path
 from zipfile import ZipFile
 
 dir = os.getcwd()
@@ -25,11 +26,9 @@ mrjson = {
 }
 for i in os.listdir(f"{dir}//mods"):
 
-    with open(f"mods/{i}", 'rb') as file:
-        sha1 = hashlib.file_digest(f, "sha1")
-
-    with open(f"mods/{i}", 'rb') as file:
-        sha512 = hashlib.file_digest(f, "sha512")
+    filebytes = Path(f"mods/{i}").read_bytes()
+    sha1 = hashlib.sha1(filebytes)
+    sha1 = hashlib.sha512(filebytes)
 
     filejson = {
         "path": f"mods/{i}",
