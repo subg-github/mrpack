@@ -27,8 +27,8 @@ mrjson = {
 for i in os.listdir(f"{dir}//mods"):
 
     filebytes = Path(f"mods/{i}").read_bytes()
-    sha1 = str(hashlib.sha1(filebytes))
-    sha512 = str(hashlib.sha512(filebytes))
+    sha1 = hashlib.sha1(filebytes).hexdigest()
+    sha512 = hashlib.sha512(filebytes).hexdigest()
 
     filejson = {
         "path": f"mods/{i}",
