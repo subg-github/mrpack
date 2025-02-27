@@ -9,7 +9,6 @@ dir = os.getcwd()
 
 repo = sys.argv[1]
 branch = sys.argv[2]
-tag = sys.argv[2]
 
 for i in os.listdir(f"{dir}//mods"):
     print(f"https://raw.githubusercontent.com/{repo}/refs/heads/{branch}/mods/{i}")
@@ -52,20 +51,3 @@ with open('modrinth.index.json', 'w') as file:
 
 with ZipFile('pack.mrpack', 'w') as pack:
     pack.write("modrinth.index.json")
-
-tag = tag.split(".")
-if len(tag) > 1:
-    tag[1] = int(tag[1])
-    tag[1] += 1
-else:
-    tag = ["v1", "0"]
-
-newtag = ""
-
-for i in tag:
-    if len(newtag) > 0:
-        newtag = f"{newtag}.{i}"
-    else:
-        newtag = f"{i}"
-
-os.environ["NEWTAG"] = newtag

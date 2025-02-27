@@ -28,22 +28,18 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Create mrpack file
       run: python main.py ${{ github.repository }} ${{ github.ref_name }}
-    - name: Delete existing tag if exists
-      run: |
-        git tag -d ${{ github.ref_name }} || true
-        git push origin :refs/tags/${{ github.ref_name }} || true
+    - name: Get Versioning Data
+      id: versioning
+      uses: Soumeh/Auto-Versioning@main
     - name: Create Release
       id: create_release
       uses: comnoco/create-release-action@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: ${{ env.NEWTAG }}
-        release_name: Release ${{ github.ref_name }}
-        body: |
-          Changes in this Release
-          - First Change
-          - Second Change
+        tag_name: ${{ steps.versioning.outputs.tag }}
+        release_name: Release ${{ steps.versioning.outputs.tag }}
+        body: "${{ steps.versioning.outputs.changelog }}"
         draft: false
         prerelease: false
     - name: Upload binaries to release
@@ -52,5 +48,5 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: pack.mrpack
         asset_name: pack.mrpack
-        tag: ${{ env.NEWTAG }}
+        tag: ${{ steps.versioning.outputs.tag }}
         overwrite: true
