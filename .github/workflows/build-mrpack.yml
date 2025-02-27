@@ -38,7 +38,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: ${{ github.ref_name }}
+        tag_name: ${{ env.NEWTAG }}
         release_name: Release ${{ github.ref_name }}
         body: |
           Changes in this Release
@@ -52,5 +52,5 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: pack.mrpack
         asset_name: pack.mrpack
-        tag: ${{ github.ref }}
+        tag: ${{ env.NEWTAG }}
         overwrite: true
