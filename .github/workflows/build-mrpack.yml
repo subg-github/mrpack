@@ -39,7 +39,7 @@ jobs:
       with:
         tag_name: ${{ steps.versioning.outputs.tag }}
         release_name: Release ${{ steps.versioning.outputs.tag }}
-        body: "${{ steps.versioning.outputs.changelog }}"
+        body: "${{ github.event.head_commit.message }}\n\n${{ steps.versioning.outputs.changelog }}"
         draft: false
         prerelease: false
     - name: Upload binaries to release
